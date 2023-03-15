@@ -60,15 +60,13 @@ const displayQuiz = (data) => {
   // }
 
   data.forEach((quiz,i) => {
-    console.log(quiz,i)
-    
-  
-    quizContainer.innerHTML += `<div class="m-3 py-3 px-4 shadow-sm rounded">
+   
+   quizContainer.innerHTML += `<div class="m-3 py-3 px-4 shadow-sm rounded">
   <div class="flex items-center">
     <div class="h-8 w-8 bg-green-300 rounded-full flex justify-center items-center text-green-800 mr-3">
       ${i + 1}
     </div>
-    <p class="text-gray-800 text-sm">${quiz.question}</p>
+    <p class="text-gray-800 text-sm">${quiz.question ? quiz.question : 'question is loading'}</p>
   </div>
   <div class="grid grid-cols-2 gap-4 mt-5">
     ${displayQuizOptions(quiz.options, i)}
@@ -115,7 +113,7 @@ document.querySelector("#submit").addEventListener("click", () => {
   let storage = JSON.parse(localStorage.getItem("result"));
   if (storage) {
     localStorage.setItem(
-      "results",
+      "result",
       JSON.stringify([
         ...storage,
         {
@@ -127,7 +125,7 @@ document.querySelector("#submit").addEventListener("click", () => {
     );
   } else {
     localStorage.setItem(
-      "results",
+      "result",
       JSON.stringify([
         {
           marks: totalMark,
@@ -140,8 +138,8 @@ document.querySelector("#submit").addEventListener("click", () => {
 
   // Right side bar/ answer section
   let x = setTimeout(() => {
-    showAnswers(answers);
-    displayResult.innerHTML = `<div
+    // showAnswers(answers);
+    answersContainer.innerHTML = `<div
     class="h-[220px] w-[220px] mx-auto mt-8 flex flex-col justify-center border-2 rounded-tr-[50%] rounded-bl-[50%]"
   >
     <h3 class="text-xl ${grade.color}">${grade.status}</h3>
