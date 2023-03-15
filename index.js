@@ -185,3 +185,12 @@ document.querySelector("#submit").addEventListener("click", () => {
   }, 1500);
   window.scrollTo(0, 0);
 });
+
+// this is blog button and question answer ..
+
+const blogButton = () => {
+
+  location.href =" blog.html"
+
+
+}
